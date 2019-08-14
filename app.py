@@ -7,11 +7,12 @@ from flask import send_from_directory
 from werkzeug.utils import secure_filename
 
 
-ALLOWED_EXTENSIONS = {'tcx'}
+
 
 app=Flask(__name__)
 app.secret_key = '12sa__eeerr332323'
-UPLOAD_FOLDER = 'static/upload' # This is referred to the root of the app
+UPLOAD_FOLDER = os.path.join('static', 'upload')
+ALLOWED_EXTENSIONS = {'tcx'}    
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 ## This is a function that determines if a file is one of the ALLOWED_EXTENSIONS
@@ -23,9 +24,10 @@ def allowed_file(filename):
 @app.route('/',methods = ['GET','POST'])
 def index():
     
-    file_names=[]
-    errors=False
+    
     if request.method == 'POST':
+        file_names=[]
+        errors=False
         if len(request.form["email"])<1:
             flash('Email no especificado')
             errors=True
@@ -46,8 +48,8 @@ def index():
         for each_file in files:
             if each_file and allowed_file(each_file.filename):
                 filename = secure_filename(each_file.filename)
-                file_names.append(filename)
                 each_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                file_names.append(filename)
         
         if not errors:
             return redirect(url_for('tcx_analysis',tcx_files=file_names,email=request.form["email"]))
