@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- JQuery-->
+    <script src = "../static/jQuery/jquery-3.4.1.min.js"></script>
+    <script src = "../static/bootstrap4.3.1/js/bootstrap.min.js"></script>
+    <link href="../static/bootstrap4.3.1/css/bootstrap.css" media="all" type="text/css" rel="stylesheet"></link>
+    <!--https://www.webcodegeeks.com/css/bootstrap/bootstrap-datepicker-example/-->
+    
+      <!-- Bootstrap datepicker JS and CSS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"></link>
+
+      <script>
+            function instantiateMyDatePicker() {
+                $('#myDatePickerId').datepicker();
+            }
+    </script>
+
+    <title>Entrena: TCX Analyzer</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"
+    </head>
+  <body onload="instantiateMyDatePicker()">
+    
+    <div class="container-full-bg">
+           
+        <div class="jumbotronb" d-flex align-items-center style="height:100vh;" >
+            <div class="lead text-black" style="background-color:white;opacity: 0.9;">
+                    <img style="float:center" src="../static/Imgs/entrenalogo.png">&nbsp<div class="entrenalogo">ENTRENA.ES</div>
+                    <h1 class="jumbotron_text_bold">Consejos GRATIS para entrenar mejor</h1>
+                    <br>
+                    <table>
+                    <tr>
+                        <td style="text-align:justify"><p style="font-weight: bold;">&nbsp¿Estás estancado y quieres seguir progresando con la bicicleta?</p><p style="font-weight: bold;">&nbspTe ayudamos a mejorar con entrenamientos personalizados diseñados a tu medida.</p><p style="font-weight: bold;">&nbspPara empezar sube uno o varios ficheros .tcx de tus entrenamientos más recientes.
+                            <br><br>&nbspNuestro sistema los analizará y te enviará un e-mail con una propuesta de trabajo.</p>
+                    
+                    </tr>
+                    </table>
+                    <div class="container">
+                      <form method="post" enctype="multipart/form-data">
+                                
+                            <table class="center">
+                                    <tr>
+                                      <td class="font-weight-bold" align="left">Email:</td>
+                                      <td align="left"><input type="email" name="email" id="email" placeholder="nombre@ejemplo.com" /></td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                      <td class="font-weight-bold" align="left">Fecha nacimiento:</td>
+                                      <td align="left"><input type="text" name="fechanacimiento" data-provide="datepicker" id="myDatePickerId" placeholder="01/01/1980"/></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="font-weight-bold" align="left">Fichero .tcx:</td>
+                                      <td class="font-weight-bold" align="left"><input type="file" name="tcxfiles[]" multiple class="form-control-file"/></td>
+                                    </tr>
+                                  </table>
+
+                                <br>
+                                {% with messages = get_flashed_messages() %}
+                                  {% if messages %}
+                                     {% for message in messages %}
+                                       <div class="alert alert-danger alert-dismissible" role="alert">
+                                       {{ message}}
+                                     </div>
+                                    {% endfor %}
+                                 {% endif %}
+                                {% endwith %}
+                                <div style="text-align: center"><input class="btn btn-primary btn-lg" type="submit"></div>
+                                <br><br>
+                              </form>
+                        
+                            </div>
+                   
+            </div>
+        
+
+            
+        </div>    
